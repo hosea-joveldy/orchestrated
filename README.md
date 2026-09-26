@@ -16,7 +16,7 @@ Uses Memoir for persistent cross-session memory, TypeUI + Stitch for design toke
 
 1. Install [opencode](https://opencode.ai).
 2. Copy `opencode.jsonc` and `prompts/` into `~/.config/opencode`.
-3. Put a 9Router API key at `~/.secrets/9router-key`.
+3. Put the omniroute API key at `~/.secrets/omniroute-key`.
 4. Point the `9router/combo-*` model names at whatever your router exposes.
 5. Run `opencode`.
 

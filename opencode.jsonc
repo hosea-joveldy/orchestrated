@@ -4,107 +4,104 @@
   "lsp": true,
   "compaction": {
     "auto": true,
-    "threshold": 0.85
+    "threshold": 0.85,
   },
   "plugin": [
     "superpowers@git+https://github.com/obra/superpowers.git",
-    "@vheins/opencode-9router@latest",
-    "opencode-memoir",
-    "opencode-vibeguard"
+    "opencode-vibeguard",
   ],
   "mcp": {
-    "typeui": {
-      "type": "remote",
-      "url": "https://mcp.typeui.sh/mcp",
-      "enabled": true
-    },
     "playwright": {
       "type": "local",
-      "command": [
-        "npx",
-        "@playwright/mcp@latest"
-      ],
-      "enabled": true
-    }
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true,
+    },
+    "stitch": {
+      "type": "remote",
+      "url": "https://stitch.googleapis.com/mcp",
+      "enabled": true,
+      "headers": {
+        "X-Goog-Api-Key": "{file:~/.secrets/stitch-key}",
+      },
+    },
   },
   "provider": {
-    "9router": {
-      "name": "9Router",
+    "omniroute": {
+      "name": "omni",
       "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "baseURL": "http://localhost:20128/v1",
-        "apiKey": "{file:~/.secrets/9router-key}",
-        "cache": true
-      }
-    }
+        "baseURL": "http://localhost:19793/v1",
+        "apiKey": "{file:~/.secrets/omniroute-key}",
+        "cache": true,
+      },
+    },
   },
   "agent": {
     "orchestrator": {
       "mode": "primary",
-      "model": "9router/combo-orchestrator",
+      "model": "omniroute/think",
       "prompt": "{file:~/.config/opencode/prompts/orchestrator.txt}",
       "permission": {
         "edit": "deny",
         "bash": "deny",
         "task": "allow",
         "skill": "allow",
-        "typeui_*": "deny"
-      }
+        "playwright_*": "deny",
+      },
     },
     "planner": {
       "mode": "subagent",
-      "model": "9router/combo-planner",
+      "model": "omniroute/think",
       "prompt": "{file:~/.config/opencode/prompts/planner.txt}",
       "permission": {
         "edit": "deny",
-        "bash": "ask",
+        "bash": "allow",
         "task": "deny",
         "websearch": "allow",
         "webfetch": "allow",
         "skill": "allow",
-        "typeui_*": "deny"
-      }
+        "playwright_*": "deny",
+      },
     },
     "designer": {
       "mode": "subagent",
-      "model": "9router/combo-designer",
+      "model": "omniroute/code",
       "prompt": "{file:~/.config/opencode/prompts/designer.txt}",
       "permission": {
-        "edit": "deny",
-        "bash": "deny",
-        "task": "deny",
+        "edit": "allow",
+        "bash": "allow",
+        "task": "allow",
         "websearch": "allow",
         "webfetch": "allow",
         "skill": "allow",
-        "typeui_*": "allow"
-      }
+        "playwright_*": "deny",
+      },
     },
     "coder": {
       "mode": "subagent",
-      "model": "9router/combo-coder",
+      "model": "omniroute/code",
       "prompt": "{file:~/.config/opencode/prompts/coder.txt}",
       "permission": {
         "edit": "allow",
-        "bash": "ask",
+        "bash": "allow",
         "task": "allow",
         "lsp": "allow",
         "skill": "allow",
-        "typeui_*": "deny"
-      }
+        "playwright_*": "deny",
+      },
     },
     "qa": {
       "mode": "subagent",
-      "model": "9router/combo-qa",
+      "model": "omniroute/code",
       "prompt": "{file:~/.config/opencode/prompts/qa.txt}",
       "permission": {
         "edit": "deny",
-        "bash": "ask",
-        "task": "deny", 
+        "bash": "allow",
+        "task": "deny",
         "lsp": "allow",
         "skill": "allow",
-        "typeui_*": "deny",
-        "playwright_*": "allow"
-      }
-    }
-  }
+        "playwright_*": "allow",
+      },
+    },
+  },
 }
