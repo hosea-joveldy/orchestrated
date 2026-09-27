@@ -37,6 +37,12 @@
     },
   },
   "agent": {
+    // NOTE: skill permission strings below are UNVERIFIED against your actual
+    // superpowers install's naming convention. Before trusting this file, run
+    // `use skill tool to list skills` inside opencode and confirm whether
+    // superpowers skills appear as e.g. "brainstorming", "superpowers-brainstorming",
+    // or "superpowers/brainstorming" -- then fix the keys below to match exactly.
+    // Getting this wrong will silently block an agent from its assigned skills.
     "orchestrator": {
       "mode": "primary",
       "model": "omniroute/think",
@@ -45,7 +51,13 @@
         "edit": "deny",
         "bash": "deny",
         "task": "allow",
-        "skill": "allow",
+        "skill": {
+          "using-superpowers": "allow",
+          "using-git-worktrees": "allow",
+          "executing-plans": "allow",
+          "finishing-a-development-branch": "allow",
+          "*": "deny",
+        },
         "playwright_*": "deny",
       },
     },
@@ -59,7 +71,12 @@
         "task": "deny",
         "websearch": "allow",
         "webfetch": "allow",
-        "skill": "allow",
+        "skill": {
+          "using-superpowers": "allow",
+          "brainstorming": "allow",
+          "writing-plans": "allow",
+          "*": "deny",
+        },
         "playwright_*": "deny",
       },
     },
@@ -73,8 +90,12 @@
         "task": "allow",
         "websearch": "allow",
         "webfetch": "allow",
-        "skill": "allow",
         "playwright_*": "deny",
+        "skill": {
+          "using-superpowers": "allow",
+          "frontend-design": "allow",
+          "*": "deny",
+        },
       },
     },
     "coder": {
@@ -86,7 +107,13 @@
         "bash": "allow",
         "task": "allow",
         "lsp": "allow",
-        "skill": "allow",
+        "skill": {
+          "using-superpowers": "allow",
+          "test-driven-development": "allow",
+          "systematic-debugging": "allow",
+          "receiving-code-review": "allow",
+          "*": "deny",
+        },
         "playwright_*": "deny",
       },
     },
@@ -99,7 +126,11 @@
         "bash": "allow",
         "task": "deny",
         "lsp": "allow",
-        "skill": "allow",
+        "skill": {
+          "using-superpowers": "allow",
+          "verification-before-completion": "allow",
+          "*": "deny",
+        },
         "playwright_*": "allow",
       },
     },
