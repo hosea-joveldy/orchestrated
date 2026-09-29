@@ -6,6 +6,9 @@
     "auto": true,
     "threshold": 0.85,
   },
+  "permission": {
+    "external_directory": "allow",
+  },
   "plugin": [
     "superpowers@git+https://github.com/obra/superpowers.git",
     "opencode-vibeguard",
@@ -30,10 +33,14 @@
       "name": "omni",
       "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "baseURL": "http://localhost:19793/v1",
+        "baseURL": "http://omniroute:20128/v1",
         "apiKey": "{file:~/.secrets/omniroute-key}",
         "cache": true,
       },
+      "models": {
+      	"think": {},
+	"code": {}, 
+      }
     },
   },
   "agent": {
@@ -66,9 +73,9 @@
       "model": "omniroute/think",
       "prompt": "{file:~/.config/opencode/prompts/planner.txt}",
       "permission": {
-        "edit": "deny",
+        "edit": "allow",
         "bash": "allow",
-        "task": "deny",
+        "task": "allow",
         "websearch": "allow",
         "webfetch": "allow",
         "skill": {
